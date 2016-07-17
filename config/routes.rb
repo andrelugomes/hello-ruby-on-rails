@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :departamentos
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -56,7 +57,7 @@ Rails.application.routes.draw do
 
   root "produtos#index"
 
-  resources :produtos, only: [:new, :create, :destroy]
+  resources :produtos, only: [:new, :create, :destroy, :edit, :update]
 
   get "/produtos/busca" => "produtos#busca", as: :busca_produto
 end
