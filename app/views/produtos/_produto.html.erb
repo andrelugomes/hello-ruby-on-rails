@@ -1,0 +1,13 @@
+<%# a maneira mais tradicional é passar só cada coleção e seguir o padrão de nomear a partial com o underline. %>
+<%# @produtos.each do |produto| #O foreach não é mais necessário pois o render e um partial ja intera a coleção%>
+    <tr>
+      <td><%= produto.nome %></td>
+      <td><%= produto.descricao %></td>
+      <td><%= produto.preco %></td>
+      <td><%= button_to "Remover", produto,
+                        method: :delete,
+                        class: "btn btn-danger",
+                        data: { confirm: "Tem certeza que
+                                deseja remover #{produto.nome}?" } %></td>
+    </tr>
+<%# end %>

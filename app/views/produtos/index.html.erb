@@ -18,20 +18,9 @@ root_url é definido com  rake routes
   </tr>
   </thead>
   <tbody>
-  <% @produtos.each do |produto| %>
-      <tr>
-        <td><%= produto.nome %></td>
-        <td><%= produto.descricao %></td>
-        <td><%= produto.preco %></td>
-        <td><%= produto.quantidade %></td>
-        <td>
-          <%= button_to "Remover", produto,
-                        method: :delete,
-                        class: "btn btn-danger",
-                        data: { confirm: "Tem certeza que deseja remover #{produto.nome}?" } %>
-        </td>
-      </tr>
-  <% end %>
+  <%# podemos renderizar a partial declarada apenas passando a collection%>
+  <%# render partial: "produto" %>
+  <%= render @produtos %>
   </tbody>
 </table>
 <%= link_to "Criar novo produto", new_produto_path %>

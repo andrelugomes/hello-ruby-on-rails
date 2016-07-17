@@ -8,17 +8,9 @@
   </tr>
   </thead>
   <tbody>
-  <% @produtos.each do |produto| %>
-      <tr>
-        <td><%= produto.nome %></td>
-        <td><%= produto.descricao %></td>
-        <td><%= produto.preco %></td>
-        <td><%= produto.quantidade %></td>
-        <td><%= button_to "Remover", produto,
-                          method: :delete,
-                          class: "btn btn-danger",
-                          data: { confirm: "Tem certeza que deseja remover #{produto.nome}?" }  %></td>
-      </tr>
-  <% end %>
+  <%# O render de um partial ja faz o foreach, podemos passar a coleção desde que o tipo do objeto seja o mesmo do html
+  <%# render partial: "produto" , collection: @produto%>
+
+  <%= render partial: "produto", collection: @produtos %>
   </tbody>
 </table>
