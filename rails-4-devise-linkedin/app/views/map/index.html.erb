@@ -1,0 +1,35 @@
+<h1>S2 IT World</h1>
+<div id="map">
+	
+</div>
+
+<div id="profile">
+	<% if @user  %>
+	
+	<span><img alt="photo" src="<%= @user.image %>" /></span></br>
+	<span data-user-id="<%= @user.id %>" =><%= @user.name %></span></br>
+	
+<% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    
+	$.ajax({
+		url: '/map/data_simple',
+		type: 'get',
+		success: function(){
+			
+		},
+		error: function (date) {
+			//TODO
+			alert("Some errors");
+		}
+	}).done(function(data) {
+		console.log(data);
+	});
+					
+ 	    
+}); 
+</script>
+

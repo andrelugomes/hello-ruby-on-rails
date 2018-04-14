@@ -1,0 +1,61 @@
+<div class="row">
+<h1>Dashboard</h1>
+    <div class="col-xs-3">
+		<% if @user  %>
+			<span><%= @user.name %></span></br>
+			<span><img alt="photo" src="<%= @user.image %>" /></span></br>
+			
+			<% if @user.team_id %>
+				<%= label_tag("Yor team:") %> 
+				<%= select_tag "team", options_from_collection_for_select(@all_teams, "id", "name", @user.team_id), class: 'form-control' %>
+			<% else %>
+				<%= select_tag "team", options_from_collection_for_select(@all_teams, "id", "name") , prompt: "Choose your team", class: 'form-control' %>
+			<% end %>
+			<input type="button" class="btn btn-primary" value="Update" id="updateMyTeam" data-user-id="<%= @user.id %>" />
+		<% end %>    	
+    </div>
+    <div class="col-xs-9">
+      
+    </div>
+  </div>
+
+
+
+
+
+<!-- <%= session.inspect %> -->
+
+<% if user_signed_in? %>
+     <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-danger') %>
+<% else %>
+    <%= link_to('Login', new_user_session_path, class: 'btn btn-success')  %>
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    
+ 	$("#updateMyTeam").click(function(){
+ 		var url = "/dashboard/update_team/"+$("#updateMyTeam").data("user-id");
+ 		var select =  $("#team option:selected").val();
+ 		if(select===""){
+ 			alert("Choose your team!");
+ 			return false;
+ 		}else{
+ 			$.ajax({
+			    url: url,
+			    type: 'PUT',
+			    data: {team_id: select},
+			    success: function(){
+			    	alert("Your team has been updated.");
+		    	},
+		    	error: function (date) {
+		    		//TODO
+		    		alert("Some errors");
+		    	}
+		  	}).done(function(data) {
+			   //TODO
+	    	});
+		} 			
+ 	});    
+}); 
+</script>
